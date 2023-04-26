@@ -75,13 +75,13 @@ class Robot:
             (17, 0): self._when_touched_handler,
             (20, 0): self._when_cliff_sensor_handler,
         }
-        self._when_play: list[Event] = []
-        self._when_stop_button: list[Event] = []
-        self._when_motor_stalled: list[Event] = []
-        self._when_bumped: list[Event] = []
-        self._when_battery: list[Event] = []
-        self._when_touched: list[Event] = []
-        self._when_cliff_sensor: list[Event] = []
+        self._when_play: List[Event] = []
+        self._when_stop_button: List[Event] = []
+        self._when_motor_stalled: List[Event] = []
+        self._when_bumped: List[Event] = []
+        self._when_battery: List[Event] = []
+        self._when_touched: List[Event] = []
+        self._when_cliff_sensor: List[Event] = []
 
         # Automatically updated getters.
         self.motor_stall = MotorStall()
@@ -246,23 +246,23 @@ class Robot:
         """Register when stop callback of type async def fn()."""
         self._when_stop_button.append(Event(True, callback))
 
-    def when_motor_stalled(self, condition: list[int, int], callback: Callable[[MotorStall], Awaitable[None]]):
+    def when_motor_stalled(self, condition: List[int], callback: Callable[[MotorStall], Awaitable[None]]):
         """Register when motor stall callback of type async def fn(motor: Motor, stall: Stall)."""
         self._when_motor_stalled.append(Event(condition, callback))
 
-    def when_bumped(self, condition: list[bool, bool], callback: Callable[[Bumpers], Awaitable[None]]):
+    def when_bumped(self, condition: List[bool], callback: Callable[[Bumpers], Awaitable[None]]):
         """Register when bumper callback of type: async def fn(left: bool, right: bool)."""
         self._when_bumped.append(Event(condition, callback))
 
-    def when_battery(self, condition: list[int, int], callback: Callable[[Battery], Awaitable[None]]):
+    def when_battery(self, condition: List[int], callback: Callable[[Battery], Awaitable[None]]):
         """Register when battery callback of type: async def fn(mV: int, percent: int)."""
         self._when_battery.append(Event(condition, callback))
 
-    def when_touched(self, condition: list[bool, bool, bool, bool], callback: Callable[[TouchSensors], Awaitable[None]]):
+    def when_touched(self, condition: List[bool], callback: Callable[[TouchSensors], Awaitable[None]]):
         """Register when touch callback of type: async def fn(front_left: bool, front_right: bool, back_left: bool, back_right: bool)."""
         self._when_touched.append(Event(condition, callback))
 
-    def when_cliff_sensor(self, condition: list[bool], callback: Callable[[bool], Awaitable[None]]):
+    def when_cliff_sensor(self, condition: List[bool], callback: Callable[[bool], Awaitable[None]]):
         """Register when cliff callback of type: async def fn(over_cliff: bool)."""
         self._when_cliff_sensor.append(Event(condition, callback))
 

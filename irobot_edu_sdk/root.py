@@ -55,8 +55,8 @@ class Root(Robot):
         self._events[(4, 2)] = self._when_color_scanned_handler
         self._events[(13, 0)] = self._when_light_seen_handler
 
-        self._when_color_scanned: list[Event] = []
-        self._when_light_seen: list[Event] = []
+        self._when_color_scanned: List[Event] = []
+        self._when_light_seen: List[Event] = []
 
         # Getters.
         self.color_sensor = ColorSensor()
@@ -89,12 +89,12 @@ class Root(Robot):
 
     # Event Callbacks.
 
-    def when_color_scanned(self, condition: list[List[int]], callback: Callable[[ColorSensor], Awaitable[None]]):
+    def when_color_scanned(self, condition: List[List[int]], callback: Callable[[ColorSensor], Awaitable[None]]):
         """Register when color callback of type async def fn(colors:
         List[Color])"""
         self._when_color_scanned.append(Event(condition, callback))
 
-    def when_light_seen(self, condition: list[int, int, int], callback: Callable[[LightSensors], Awaitable[None]]):
+    def when_light_seen(self, condition: List[int], callback: Callable[[LightSensors], Awaitable[None]]):
         """Register when light callback of type: async def fn(state: Light, left_mV: int, right_mV: int)"""
         self._when_light_seen.append(Event(condition, callback))
 
